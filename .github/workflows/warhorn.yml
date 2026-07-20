@@ -1,0 +1,40 @@
+name: Warhorn to Discord
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # Every 15 minutes
+  workflow_dispatch:         # Allows manual runs
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run the script
+        env:
+          RSS_FEED_1: ${{ secrets.RSS_FEED_1 }}
+          RSS_FEED_2: ${{ secrets.RSS_FEED_2 }}
+          RSS_FEED_3: ${{ secrets.RSS_FEED_3 }}
+          DISCORD_WEBHOOK_LONG_REST: ${{ secrets.DISCORD_WEBHOOK_LONG_REST }}
+          ROLE_ID_LONG_REST: ${{ secrets.ROLE_ID_LONG_REST }}
+          # NEW WEBHOOKS GO HERE!
+          DISCORD_WEBHOOK_DEFAULT: ${{ secrets.DISCORD_WEBHOOK_DEFAULT }}
+        run: python main.py
+
+      - name: Commit updated seen list
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add seen_warhorn.json || true
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update seen Warhorn links" && git push)
