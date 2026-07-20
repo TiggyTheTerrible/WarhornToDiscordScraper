@@ -22,7 +22,7 @@ LOCATION_MAP = {
         "role_id": os.getenv("ROLE_ID_LONG_REST"),
         "label": "The Long Rest"
     },
-    # === Add new locations below ===
+    # Add new locations below ===
         #"long_rest": {
         #"keywords": ["the long rest", "long code file"],
         #"webhook": os.getenv("DISCORD_WEBHOOK_LONG_REST"),
@@ -43,10 +43,17 @@ HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; WarhornDiscordBot/1.0)"}
 # HELPERS ======================
 
 def load_seen():
-    if os.path.exists(SEEN_FILE):
+    if not os.path.exists(SEEN_FILE):
+        return set()
+    try:
         with open(SEEN_FILE, "r") as f:
-            return set(json.load(f))
-    return set()
+            content = f.read().strip()
+            if not content:
+                return set()
+            return set(json.loads(content))
+    except (json.JSONDecodeError, ValueError):
+        print("Warning: seen_warhorn.json is invalid or empty. Starting fresh.")
+        return set()
 
 def save_seen(seen):
     with open(SEEN_FILE, "w") as f:
