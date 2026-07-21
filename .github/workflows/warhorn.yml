@@ -23,8 +23,22 @@ jobs:
       - name: Run the script
         env:
           RSS_FEED_1: ${{ secrets.RSS_FEED_1 }}
+
+          DISCORD_WEBHOOK_BOARD_HOME: ${{ secrets.DISCORD_WEBHOOK_BOARD_HOME }}
+          ROLE_ID_BOARD_AT_HOME: ${{ secrets.ROLE_ID_BOARD_AT_HOME }}
+
+          DISCORD_WEBHOOK_CHAOS_CARDS: ${{ secrets.DISCORD_WEBHOOK_CHAOS_CARDS }}
+          ROLE_ID_CHAOS_CARDS: ${{ secrets.ROLE_ID_CHAOS_CARDS }}
+          
+          DISCORD_WEBHOOK_DICE_N_DESTINY: ${{ secrets.DISCORD_WEBHOOK_DICE_N_DESTINY }}
+          ROLE_ID_DICE_N_DESTINY: ${{ secrets.ROLE_ID_DICE_N_DESTINY }}
+          
           DISCORD_WEBHOOK_LONG_REST: ${{ secrets.DISCORD_WEBHOOK_LONG_REST }}
           ROLE_ID_LONG_REST: ${{ secrets.ROLE_ID_LONG_REST }}
+
+          DISCORD_WEBHOOK_MUG_MEEPLE: ${{ secrets.DISCORD_WEBHOOK_MUG_MEEPLE }}
+          ROLE_ID_MUG_MEEPLE: ${{ secrets.ROLE_ID_MUG_MEEPLE }}
+          
           DISCORD_WEBHOOK_DEFAULT: ${{ secrets.DISCORD_WEBHOOK_DEFAULT }}
         run: |
           echo "========================================"
