@@ -16,11 +16,35 @@ RSS_FEED_URLS = [
 ]
 
 LOCATION_MAP = {
+    "board_at_home": {
+        "keywords": ["board at home"], #LOWER CASE ONLY!
+        "webhook": os.getenv("DISCORD_WEBHOOK_BOARD_HOME"),
+        "role_id": os.getenv("ROLE_ID_BOARD_AT_HOME"),
+        "label": "Board At Home"
+    },
+    "chaos_cards": {
+        "keywords": ["chaos cards"], #LOWER CASE ONLY!
+        "webhook": os.getenv("DISCORD_WEBHOOK_CHAOS_CARDS"),
+        "role_id": os.getenv("ROLE_ID_CHAOS_CARDS"),
+        "label": "Chaos Cards"
+    },
+    "dice_destiny": {
+        "keywords": ["dice & destiny"], #LOWER CASE ONLY!
+        "webhook": os.getenv("DISCORD_WEBHOOK_DICE_N_DESTINY"),
+        "role_id": os.getenv("ROLE_ID_DICE_N_DESTINY"),
+        "label": "Dice & Destiny"
+    },
     "long_rest": {
         "keywords": ["the long rest"], #LOWER CASE ONLY!
         "webhook": os.getenv("DISCORD_WEBHOOK_LONG_REST"),
         "role_id": os.getenv("ROLE_ID_LONG_REST"),
         "label": "The Long Rest"
+    },
+    "mug_n_meeple": {
+        "keywords": ["Mug & Meeple"], #LOWER CASE ONLY!
+        "webhook": os.getenv("DISCORD_WEBHOOK_MUG_MEEPLE"),
+        "role_id": os.getenv("ROLE_ID_MUG_MEEPLE"),
+        "label": "Mug & Meeple"
     },
     # Add new locations below ===
         #"long_rest": {
